@@ -85,9 +85,7 @@ public class UsuarioServicio {
 
 	    // Crear un nuevo objeto UsuarioDao con los datos del DTO
 	    UsuarioDao usuario = new UsuarioDao();
-	    usuario.setNicknameUsuario(usuarioDto.getNicknameUsuario());
 	    usuario.setNombreUsuario(usuarioDto.getNombreUsuario());
-	    usuario.setDniUsuario(usuarioDto.getDniUsuario());
 	    usuario.setTelefonoUsuario(usuarioDto.getTelefonoUsuario());
 	    usuario.setEmailUsuario(usuarioDto.getEmailUsuario());
 
@@ -115,7 +113,7 @@ public class UsuarioServicio {
      * @return true si la modificación fue exitosa, false si no se encontró el usuario
      */
 	@Transactional
-	public boolean modificarUsuario(long idUsuario, String nuevoNombre, String nuevoDni, String nuevoTelefono, String nuevoRol, byte[] nuevaFoto) {
+	public boolean modificarUsuario(long idUsuario, String nuevoNombre, String nuevoTelefono, String nuevoRol, byte[] nuevaFoto) {
 	    // Intentamos obtener al usuario por su ID
 	    Optional<UsuarioDao> usuarioOpt = usuarioRepository.findById(idUsuario);
 
@@ -129,10 +127,7 @@ public class UsuarioServicio {
 	            usuario.setNombreUsuario(nuevoNombre);
 	            System.out.println("Actualizando nombre: " + nuevoNombre);
 	        }
-	        if (nuevoDni != null && !nuevoDni.isEmpty()) {
-	            usuario.setDniUsuario(nuevoDni);
-	            System.out.println("Actualizando DNI: " + nuevoDni);
-	        }
+	       
 	        if (nuevoTelefono != null && !nuevoTelefono.isEmpty()) {
 	            usuario.setTelefonoUsuario(nuevoTelefono);
 	            System.out.println("Actualizando teléfono: " + nuevoTelefono);

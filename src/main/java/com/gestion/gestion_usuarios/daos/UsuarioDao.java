@@ -11,12 +11,12 @@ import jakarta.persistence.Table;
  * Clase que representa la entidad Usuario en la base de datos.
  * <p>
  * Esta clase contiene los atributos que definen a un usuario, como su 
- * nickname, nombre, DNI, teléfono, foto, email, contraseña y rol. 
+ * Nombre, teléfono, foto, email, contraseña y rol. 
  * Está mapeada como una entidad JPA para facilitar su persistencia en la base de datos.
  * </p>
  */
 @Entity // Marca la clase como una entidad JPA
-@Table(name = "usuario", schema = "gestion") // Mapea esta clase a la tabla "usuario" del esquema "gestion"
+@Table(name = "usuario", schema = "gestion_usuario") // Mapea esta clase a la tabla "usuario" del esquema "gestion"
 public class UsuarioDao {
 
     /** Identificador único del usuario, generado automáticamente. */
@@ -25,17 +25,9 @@ public class UsuarioDao {
     @Column(name = "id_usuario", updatable = false) // Configura la columna de la base de datos
     private long idUsuario;
 
-    /** El nickname del usuario. */
-    @Column(name = "nickname_usuario", unique = true, length = 50) // Campo único y requerido, longitud máxima 50
-    private String nicknameUsuario;
-
-    /** El nombre completo del usuario. */
-    @Column(name = "nombre_usuario", length = 100) // Campo requerido, longitud máxima 100
+    /** El nombre del usuario. */
+    @Column(name = "nombre_usuario", unique = true, length = 50) // Campo único y requerido, longitud máxima 50
     private String nombreUsuario;
-
-    /** El DNI del usuario. */
-    @Column(name = "dni_usuario", unique = true, length = 20) // Campo único y requerido, longitud máxima 20
-    private String dniUsuario;
 
     /** El teléfono del usuario. */
     @Column(name = "telefono_usuario", length = 15) // Campo opcional, longitud máxima 15
@@ -72,20 +64,16 @@ public class UsuarioDao {
      * Constructor con todos los campos (excepto el ID).
      * Útil para crear nuevos objetos antes de persistirlos en la base de datos.
      *
-     * @param nicknameUsuario El nickname del usuario.
-     * @param nombreUsuario El nombre completo del usuario.
-     * @param dniUsuario El DNI del usuario.
+     * @param nombreUsuario El nombre del usuario.
      * @param telefonoUsuario El teléfono del usuario.
      * @param fotoUsuario La foto del usuario en formato de bytes.
      * @param emailUsuario El email del usuario.
      * @param passwordUsuario La contraseña del usuario.
      * @param rol El rol del usuario.
      */
-    public UsuarioDao(String nicknameUsuario, String nombreUsuario, String dniUsuario, String telefonoUsuario, 
+    public UsuarioDao(String nombreUsuario, String telefonoUsuario, 
                    byte[] fotoUsuario, String emailUsuario, String passwordUsuario, String rol) {
-        this.nicknameUsuario = nicknameUsuario;
         this.nombreUsuario = nombreUsuario;
-        this.dniUsuario = dniUsuario;
         this.telefonoUsuario = telefonoUsuario;
         this.fotoUsuario = fotoUsuario;
         this.emailUsuario = emailUsuario;
@@ -98,22 +86,18 @@ public class UsuarioDao {
      * Útil para pruebas o cuando el ID ya está definido.
      *
      * @param idUsuario El ID único del usuario.
-     * @param nicknameUsuario El nickname del usuario.
-     * @param nombreUsuario El nombre completo del usuario.
-     * @param dniUsuario El DNI del usuario.
+     * @param nombreUsuario El nombre del usuario.
      * @param telefonoUsuario El teléfono del usuario.
      * @param fotoUsuario La foto del usuario en formato de bytes.
      * @param emailUsuario El email del usuario.
      * @param passwordUsuario La contraseña del usuario.
      * @param rol El rol del usuario.
      */
-    public UsuarioDao(long idUsuario, String nicknameUsuario, String nombreUsuario, String dniUsuario, 
+    public UsuarioDao(long idUsuario, String nombreUsuario, 
                    String telefonoUsuario, byte[] fotoUsuario, String emailUsuario, 
                    String passwordUsuario, String rol) {
         this.idUsuario = idUsuario;
-        this.nicknameUsuario = nicknameUsuario;
         this.nombreUsuario = nombreUsuario;
-        this.dniUsuario = dniUsuario;
         this.telefonoUsuario = telefonoUsuario;
         this.fotoUsuario = fotoUsuario;
         this.emailUsuario = emailUsuario;
@@ -144,24 +128,6 @@ public class UsuarioDao {
     }
 
     /**
-     * Obtiene el nickname del usuario.
-     *
-     * @return El nickname del usuario.
-     */
-    public String getNicknameUsuario() {
-        return nicknameUsuario;
-    }
-
-    /**
-     * Establece el nickname del usuario.
-     *
-     * @param nicknameUsuario El nickname del usuario.
-     */
-    public void setNicknameUsuario(String nicknameUsuario) {
-        this.nicknameUsuario = nicknameUsuario;
-    }
-
-    /**
      * Obtiene el nombre del usuario.
      *
      * @return El nombre del usuario.
@@ -177,24 +143,6 @@ public class UsuarioDao {
      */
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
-    }
-
-    /**
-     * Obtiene el DNI del usuario.
-     *
-     * @return El DNI del usuario.
-     */
-    public String getDniUsuario() {
-        return dniUsuario;
-    }
-
-    /**
-     * Establece el DNI del usuario.
-     *
-     * @param dniUsuario El DNI del usuario.
-     */
-    public void setDniUsuario(String dniUsuario) {
-        this.dniUsuario = dniUsuario;
     }
 
     /**
@@ -300,9 +248,7 @@ public class UsuarioDao {
     public String toString() {
         return "Usuario{" +
                "idUsuario=" + idUsuario +
-               ", nicknameUsuario='" + nicknameUsuario + '\'' +
                ", nombreUsuario='" + nombreUsuario + '\'' +
-               ", dniUsuario='" + dniUsuario + '\'' +
                ", telefonoUsuario='" + telefonoUsuario + '\'' +
                ", emailUsuario='" + emailUsuario + '\'' +
                ", rol='" + rol + '\'' +

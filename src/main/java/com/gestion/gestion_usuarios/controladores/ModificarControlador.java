@@ -30,7 +30,6 @@ public class ModificarControlador {
      *
      * @param idUsuario   ID del usuario a modificar.
      * @param nuevoNombre Nuevo nombre del usuario (opcional).
-     * @param nuevoDni    Nuevo DNI del usuario (opcional).
      * @param nuevoTelefono Nuevo teléfono del usuario (opcional).
      * @param nuevoRol    Nuevo rol del usuario (opcional).
      * @param nuevaFoto   Nueva foto del usuario (opcional).
@@ -40,14 +39,12 @@ public class ModificarControlador {
     public ResponseEntity<String> modificarUsuario(
             @PathVariable long idUsuario,
             @RequestParam(required = false) String nuevoNombre,
-            @RequestParam(required = false) String nuevoDni,
             @RequestParam(required = false) String nuevoTelefono,
             @RequestParam(required = false) String nuevoRol,
             @RequestPart(required = false) MultipartFile nuevaFoto) {
 
         System.out.println("Recibido idUsuario: " + idUsuario);
         System.out.println("Recibido nuevoNombre: " + nuevoNombre);
-        System.out.println("Recibido nuevoDni: " + nuevoDni);
         System.out.println("Recibido nuevoTelefono: " + nuevoTelefono);
         System.out.println("Recibido nuevoRol: " + nuevoRol);
         System.out.println("Recibido nuevaFoto: " + (nuevaFoto != null ? nuevaFoto.getOriginalFilename() : "null"));
@@ -62,7 +59,7 @@ public class ModificarControlador {
             return ResponseEntity.status(500).body("Error al procesar la foto");
         }
 
-        boolean modificacionExitosa = usuarioServicio.modificarUsuario(idUsuario, nuevoNombre, nuevoDni, nuevoTelefono, nuevoRol, nuevaFotoBytes);
+        boolean modificacionExitosa = usuarioServicio.modificarUsuario(idUsuario, nuevoNombre, nuevoTelefono, nuevoRol, nuevaFotoBytes);
 
         if (modificacionExitosa) {
             return ResponseEntity.ok("Usuario actualizado con éxito");
