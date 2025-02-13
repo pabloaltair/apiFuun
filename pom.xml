@@ -80,13 +80,7 @@
 			<artifactId>jakarta.jakartaee-api</artifactId>
 			<version>10.0.0</version> <!-- Cambiar por la versión deseada -->
 			<scope>provided</scope>
-		</dependency>	
-	    <!-- Spring Boot Starter Mail -->
-	    <dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter-mail</artifactId>
-	    </dependency>
-
+		</dependency>
 	
 	</dependencies>
 
