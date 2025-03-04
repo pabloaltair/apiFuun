@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gestion.gestion_usuarios.servicios.UsuarioServicio;
 
 /**
- * Controlador encargado de manejar las operaciones de eliminación de usuarios y clubes.
+ * Controlador encargado de manejar las operaciones de eliminación de usuarios
  * Proporciona endpoints para eliminar usuarios y clubes del sistema.
  */
 @RestController

@@ -12,7 +12,7 @@ import com.gestion.gestion_usuarios.dtos.RegistroUsuarioDto;
 import com.gestion.gestion_usuarios.servicios.UsuarioServicio;
 
 /**
- * Controlador que maneja el registro de usuarios y clubes.
+ * Controlador que maneja el registro de usuarios
  * Proporciona endpoints para registrar nuevos usuarios y clubes en el sistema.
  */
 @RestController
