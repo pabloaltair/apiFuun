@@ -106,11 +106,10 @@ public class UsuarioServicio {
 	/**
      * Método para modificar los datos de un usuario existente en la base de datos.
      * <p>
-     * Modifica los campos nombre, teléfono, DNI, rol e imagen si se proporcionan valores nuevos y no nulos.
+     * Modifica los campos nombre, teléfono, rol e imagen si se proporcionan valores nuevos y no nulos.
      * </p>
      * @param idUsuario identificador del usuario a modificar
      * @param nuevoNombre el nuevo nombre del usuario
-     * @param nuevoDni el nuevo DNI del usuario
      * @param nuevoTelefono el nuevo teléfono del usuario
      * @param nuevoRol el nuevo rol del usuario
      * @param nuevaFoto la nueva foto del usuario (opcional)
