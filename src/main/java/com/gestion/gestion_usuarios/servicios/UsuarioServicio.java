@@ -180,5 +180,24 @@ public class UsuarioServicio {
         return false; // Retorna false si el usuario no existe
     }
 	
+	/**
+	 * Actualiza la contraseña de un usuario usando su email.
+	 * @param emailUsuario el email del usuario
+	 * @param nuevaPassword la nueva contraseña en texto plano
+	 * @return true si la contraseña fue actualizada, false si no se encontró el usuario
+	 */
+	public boolean actualizarPasswordPorEmail(String emailUsuario, String nuevaPassword) {
+	    UsuarioDao usuario = usuarioRepository.findByEmailUsuario(emailUsuario);
+
+	    if (usuario != null) {
+	        String passwordEncriptada = passwordEncoder.encode(nuevaPassword);
+	        usuario.setPasswordUsuario(passwordEncriptada);
+	        usuarioRepository.save(usuario);
+	        return true;
+	    }
+
+	    return false;
+	}
+
 
 }
