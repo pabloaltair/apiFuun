@@ -1,7 +1,9 @@
 package com.gestion.gestion_usuarios.servicios;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gestion.gestion_usuarios.daos.UsuarioDao;
+import com.gestion.gestion_usuarios.dtos.ListaUsuariosDto;
 import com.gestion.gestion_usuarios.dtos.RegistroUsuarioDto;
 import com.gestion.gestion_usuarios.repositorios.UsuarioRepository;
 
@@ -197,6 +200,21 @@ public class UsuarioServicio {
 	    }
 
 	    return false;
+	}
+
+	public List<ListaUsuariosDto> obtenerTodosLosUsuarios() {
+	    List<UsuarioDao> usuarios = usuarioRepository.findAll();
+
+	    return usuarios.stream()
+	        .map(usuario -> new ListaUsuariosDto(
+	            usuario.getIdUsuario(),
+	            usuario.getNombreUsuario(),
+	            usuario.getTelefonoUsuario(),
+	            usuario.getFotoUsuario(),
+	            usuario.getEmailUsuario(),
+	            usuario.getRol()
+	        ))
+	        .collect(Collectors.toList());
 	}
 
 
